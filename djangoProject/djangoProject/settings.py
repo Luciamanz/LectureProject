@@ -28,7 +28,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     'localhost',
-    'cbs-webapp-lgm.onrender.com'
+    'cbs-web-app-lgm.onrender.com'
 ]
 
 
