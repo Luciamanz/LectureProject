@@ -1,6 +1,9 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
+
+
 class Currency(models.Model):
     iso = models.CharField(max_length=3)
     long_name = models.CharField(max_length=50)
@@ -13,7 +16,7 @@ class Currency(models.Model):
 class Holdings(models.Model):
     currency = models.ForeignKey(
         Currency,
-    on_delete=models.CASCADE,
+        on_delete=models.CASCADE,
     )
     value = models.FloatField(default=0.0)
     buy_date = models.DateField()
@@ -37,3 +40,15 @@ class Rate(models.Model):
 
     def __str__(self):
         return f'{self.currency_one} {self.currency_two} {self.rate} {self.last_update_time}'
+
+
+class AccountHolder(models.Model):
+    user = models.OneToOneField(
+        User,
+        on_delete=models.CASCADE,
+
+    )
+    date_of_brith = models.DateField(),
+    currencies_visited = models.ManyToManyField(
+        Currency,
+    )
